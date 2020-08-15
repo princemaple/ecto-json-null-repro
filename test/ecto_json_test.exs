@@ -5,6 +5,10 @@ defmodule EctoJsonTest do
   alias EctoJson.{Repo, Post}
   import Ecto.Query
 
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(EctoJson.Repo)
+  end
+
   test "error" do
     post = %Post{subject: "test", content: "test", meta: %{nothing: nil}}
     Repo.insert!(post)

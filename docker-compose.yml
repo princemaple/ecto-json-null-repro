@@ -11,6 +11,7 @@ services:
       - ./config:/var/app/config
       - ./priv:/var/app/priv
       - ./lib:/var/app/lib
+      - ./test:/var/app/test
       - ./mix.exs:/var/app/mix.exs
       - ./mix.lock:/var/app/mix.lock
     depends_on:
