@@ -10,9 +10,9 @@ defmodule EctoJsonTest do
     Repo.insert!(post)
 
     assert [] = Repo.all(from p in Post, where: is_nil(p.meta["nothing"]))
-    assert [_] = Repo.all(from p in Post, where: fragment("?->>?", p.meta, "nothing"))
+    assert [_] = Repo.all(from p in Post, where: fragment("?->>? IS NULL", p.meta, "nothing"))
 
     refute Repo.all(from p in Post, where: is_nil(p.meta["nothing"])) ==
-            Repo.all(from p in Post, where: fragment("?->>?", p.meta, "nothing"))
+            Repo.all(from p in Post, where: fragment("?->>? IS NULL", p.meta, "nothing"))
   end
 end

@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - MIX_ENV=dev
+        - MIX_ENV=test
     image: ecto-json
     volumes:
       - ./config:/var/app/config
