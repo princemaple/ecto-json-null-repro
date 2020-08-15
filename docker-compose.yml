@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MIX_ENV=dev
+    image: ecto-json
+    volumes:
+      - ./config:/var/app/config
+      - ./priv:/var/app/priv
+      - ./lib:/var/app/lib
+      - ./mix.exs:/var/app/mix.exs
+      - ./mix.lock:/var/app/mix.lock
+    depends_on:
+      - db
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pg_data:/var/lib/postgresql/data:rw
+volumes:
+  pg_data:
+    driver: local
